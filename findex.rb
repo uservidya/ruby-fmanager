@@ -55,6 +55,10 @@ for fpath in Dir.glob("#{indexpath}/**/*").select { |e| File.directory?(e) == fa
         else
             if h[fsize].is_a?(String)
                 p = h[fsize]
+                if p == fpath
+                    next
+                end
+
                 d = Digest::MD5.hexdigest(File.read(p))
                 h[fsize] = { d => FileMeta.new(fsize, p, d) }
                 needupdate = true
