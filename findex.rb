@@ -25,6 +25,7 @@ end
 
 
 puts "Loading DB #{DBFILE} ..."
+t0 = Time.now
 h = {}
 needupdate = true
 if File.exists?(DBFILE)
@@ -34,10 +35,12 @@ if File.exists?(DBFILE)
         needupdate = false
     end
 end
-puts "Loaded DB."
+t1 = Time.now
+puts "Loaded DB in #{(t1-t0).round(2)}s."
 
 indexpath = ARGV[0]
 puts "Indexing #{indexpath} ..."
+t0 = Time.now
 
 for fpath in Dir.glob("#{indexpath}/**/*").select { |e| File.directory?(e) == false && File.exists?(e) }
     begin
@@ -67,12 +70,15 @@ for fpath in Dir.glob("#{indexpath}/**/*").select { |e| File.directory?(e) == fa
         puts "[FAIL]: file=\"#{fpath}\" #{e.message}"
     end
 end
-puts "Indexing completed."
+t1 = Time.now
+puts "Indexing completed in #{(t1-t0).round(2)}s."
 
 if needupdate
     puts "Updating DB #{DBFILE} ..."
+    t0 = Time.now
     File.write(DBFILE, YAML::dump(h))
-    puts "Updated DB."
+    t1 = Time.now
+    puts "Updated DB in #{(t1-t0).round(2)}s."
 else
     puts "Skip updating DB."
 end
