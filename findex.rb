@@ -31,7 +31,7 @@ indexpath = ARGV[0]
 puts "Indexing #{indexpath} ..."
 t0 = Time.now
 
-for fpath in Dir.glob("#{indexpath}/**/*").select { |e| File.ftype(e) == "file" }
+for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File.ftype(e) == "file" }
     begin
         fpath = File.realpath(fpath).force_encoding("binary")
         fsize = File.size(fpath)
