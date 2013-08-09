@@ -1,18 +1,7 @@
 require 'digest/md5'
 require 'yaml'
 
-
-class FileMeta
-    attr_reader :fsize
-    attr_reader :digest
-    attr_reader :path
-
-    def initialize(fsize, path, digest)
-        @fsize = fsize
-        @digest = digest
-        @path = path
-    end
-end
+require 'fmeta'
 
 
 DBFILE = "fmetadata.db"
