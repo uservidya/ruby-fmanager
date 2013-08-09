@@ -36,6 +36,11 @@ for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File
         fpath = File.realpath(fpath).force_encoding("binary")
         fsize = File.size(fpath)
 
+        if fsize == 0
+            puts "[SKIP]: #{fpath}"
+            next
+        end
+
         # Lazy index the file.
         if h[fsize].nil?
             h[fsize] = fpath
