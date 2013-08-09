@@ -1,7 +1,10 @@
 require 'digest/md5'
 require 'yaml'
 
+require 'fmatch'
 require 'fmeta'
+
+include FileMatch
 
 
 DBFILE = "fmetadata.db"
@@ -31,7 +34,7 @@ indexpath = ARGV[0]
 puts "Indexing #{indexpath} ..."
 t0 = Time.now
 
-for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File.ftype(e) == "file" }
+for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File.ftype(e) == "file" && has_folder?(".git", e.force_encoding("binary")) == false }
     begin
         fpath = File.realpath(fpath).force_encoding("binary")
         fsize = File.size(fpath)
