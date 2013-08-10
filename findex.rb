@@ -13,10 +13,15 @@ DBFILE = "fmetadata.db"
 
 banner = "usage: findex [options] <PATH>"
 options = {
+    dbfile: DBFILE,
     updatedb: true,
 }
 OptionParser.new do |opts|
     opts.banner = banner
+
+    opts.on "-d", "--db-file PATH", "Specify the DB PATH to use." do |path|
+        options[:dbfile] = path
+    end
 
     opts.on "-n", "--no-update-db", "Do not update the DB." do
         options[:updatedb] = false
@@ -33,12 +38,12 @@ if ARGV.size != 1
 end
 
 
-puts "Loading DB #{DBFILE} ..."
+puts "Loading DB #{options[:dbfile]} ..."
 t0 = Time.now
 h = {}
 needupdate = true
-if File.exists?(DBFILE)
-    obj = YAML::load(File.read(DBFILE))
+if File.exists?(options[:dbfile])
+    obj = YAML::load(File.read(options[:dbfile]))
     if obj.is_a?(Hash)
         h = obj
         needupdate = false
@@ -113,9 +118,9 @@ puts "    SKIP: #{nskipfiles}"
 puts "    FAIL: #{nfailfiles}"
 
 if needupdate && options[:updatedb]
-    puts "Updating DB #{DBFILE} ..."
+    puts "Updating DB #{options[:dbfile]} ..."
     t0 = Time.now
-    File.write(DBFILE, YAML::dump(h))
+    File.write(options[:dbfile], YAML::dump(h))
     t1 = Time.now
     puts "Updated DB in #{(t1-t0).round(2)}s."
 else
