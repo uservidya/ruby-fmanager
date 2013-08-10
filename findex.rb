@@ -53,6 +53,8 @@ for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File
             if h[fsize].is_a?(String)
                 p = h[fsize]
                 if p == fpath
+                    puts "[DUP]: #{fpath}"
+                    puts "       #{p}"
                     next
                 end
 
@@ -65,6 +67,9 @@ for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File
                 h[fsize][digest] = FileMeta.new(fsize, fpath, digest)
                 needupdate = true
                 puts "[NEW]: #{fpath} #{digest}"
+            else
+                puts "[DUP]: #{fpath}"
+                puts "       #{h[fsize][digest].path}"
             end
         end
     rescue StandardError => e
