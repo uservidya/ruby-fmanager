@@ -35,6 +35,11 @@ OptionParser.new do |opts|
         puts opts
         exit
     end
+
+    opts.on "--version", "Show version." do
+        puts "0.0.1"
+        exit
+    end
 end.parse!
 
 if ARGV.size != 1
