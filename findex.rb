@@ -30,6 +30,11 @@ OptionParser.new do |opts|
     opts.on "-u", "--update-db", "Update the DB when applicable." do
         options[:updatedb] = true
     end
+
+    opts.on "-h", "--help", "Show this message." do
+        puts opts
+        exit
+    end
 end.parse!
 
 if ARGV.size != 1
