@@ -1,4 +1,5 @@
 require 'digest/md5'
+require 'optparse'
 require 'yaml'
 
 require 'fmatch'
@@ -10,8 +11,24 @@ include FileMatch
 DBFILE = "fmetadata.db"
 
 
+banner = "usage: findex [options] <PATH>"
+options = {
+    updatedb: true,
+}
+OptionParser.new do |opts|
+    opts.banner = banner
+
+    opts.on "-n", "--no-update-db", "Do not update the DB." do
+        options[:updatedb] = false
+    end
+
+    opts.on "-u", "--update-db", "Update the DB when applicable." do
+        options[:updatedb] = true
+    end
+end.parse!
+
 if ARGV.size != 1
-    $stderr << "usage: findex <PATH>\n"
+    $stderr << "#{banner}\n"
     exit 0
 end
 
@@ -95,7 +112,7 @@ puts "     DUP: #{ndupfiles}"
 puts "    SKIP: #{nskipfiles}"
 puts "    FAIL: #{nfailfiles}"
 
-if needupdate
+if needupdate && options[:updatedb]
     puts "Updating DB #{DBFILE} ..."
     t0 = Time.now
     File.write(DBFILE, YAML::dump(h))
