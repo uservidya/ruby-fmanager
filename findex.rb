@@ -65,7 +65,7 @@ nfailfiles = 0
 puts "Indexing #{indexpath} ..."
 t0 = Time.now
 
-for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| File.ftype(e) == "file" && has_folder?(".git", e.force_encoding("binary")) == false }
+for fpath in Dir.glob("#{indexpath}/**/*", File::FNM_DOTMATCH).select { |e| e.force_encoding("binary"); File.ftype(e) == "file" && has_folder?(".git", e) == false && has_folder?(".hg", e) == false }
     begin
         fpath = File.realpath(fpath).force_encoding("binary")
         fsize = File.size(fpath)
