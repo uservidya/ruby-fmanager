@@ -1,4 +1,4 @@
-module FileMatch
+module FManager
 
     def has_folder?(folder, path)
         pos = (path =~ /^#{folder}\/|^#{folder}$|\/#{folder}\/|\/#{folder}$/)
