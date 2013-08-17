@@ -22,7 +22,8 @@ end
 
 cmd = ARGV.shift
 case cmd
-when nil
+when "index"
+    FManager.cmd_index(ARGV.clone)
 else
     $stderr << "fm: '#{cmd}' is not a fm command.\n"
     exit
