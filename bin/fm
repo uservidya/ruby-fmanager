@@ -19,3 +19,11 @@ if ARGV.size == 0
     $stderr << usage
     exit
 end
+
+cmd = ARGV.shift
+case cmd
+when nil
+else
+    $stderr << "fm: '#{cmd}' is not a fm command.\n"
+    exit
+end
