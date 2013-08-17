@@ -3,4 +3,19 @@
 require 'fmanager'
 
 
-puts "fmanager #{FManager::VERSION}"
+def usage
+    <<EOS
+SGC File Manager #{FManager::VERSION}
+
+usage: fm <command> [args]
+
+Available fm commands:
+    index       Index files in a folder recursively.
+EOS
+end
+
+
+if ARGV.size == 0
+    $stderr << usage
+    exit
+end
