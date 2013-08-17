@@ -1,0 +1,7 @@
+## 0.0.1 (18 Aug 2013)
+
+Features:
+
+    * Indexing command 'fm index' with file metadata stored in YAML format.
+    * Ruby gem package.
+    * Support Linux platform.
