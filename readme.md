@@ -1,5 +1,8 @@
 # SGC File Manager
 
+[![Build Status](https://travis-ci.org/xman/ruby-fmanager.png?branch=master)](https://travis-ci.org/xman/ruby-fmanager)
+[![Code Climate](https://codeclimate.com/github/xman/ruby-fmanager.png)](https://codeclimate.com/github/xman/ruby-fmanager)
+
 A gem to manage files scattered over multiple storage resources.
 
 
