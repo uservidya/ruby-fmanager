@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
     spec.files         += ['fmanager.gemspec', 'Rakefile']
     spec.files         += ['history.txt', 'readme.md']
     spec.test_files     = Dir.glob('test/**/*.rb')
+    spec.test_files    += Dir.glob('test/**/*.txt')
 
     spec.executables    = %w(fm)
     spec.require_paths  = ["lib"]
