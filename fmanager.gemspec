@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
     spec.authors            = ['ShinYee']
     spec.email              = ['shinyee@speedgocomputing.com']
     spec.homepage           = 'http://github.com/xman/ruby-fmanager'
-    spec.rubyforge_project  = 'fmanager'
     spec.licenses           = ['GPLv3']
 
     spec.required_ruby_version      = '>= 2.0.0'
