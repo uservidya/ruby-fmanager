@@ -17,16 +17,11 @@ Gem::Specification.new do |spec|
     spec.required_ruby_version      = '>= 2.0.0'
     spec.required_rubygems_version  = '>= 2.0.3'
 
-    # spec.add_development_dependency
+    spec.files         = `git ls-files`.split($/)
+    spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+    spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+    spec.require_paths = ["lib"]
 
-    spec.files          = Dir.glob('lib/**/*.rb')
-    spec.files         += Dir.glob('bin/**/*.rb')
-    spec.files         += ['COPYING']
-    spec.files         += ['fmanager.gemspec', 'Rakefile']
-    spec.files         += ['history.txt', 'readme.md']
-    spec.test_files     = Dir.glob('test/**/*.rb')
-    spec.test_files    += Dir.glob('test/**/*.txt')
-
-    spec.executables    = %w(fm)
-    spec.require_paths  = ["lib"]
+    spec.add_development_dependency "bundler", "~> 1.3"
+    spec.add_development_dependency "rake"
 end
