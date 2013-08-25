@@ -28,7 +28,7 @@ Duplicates:
 
 What if fmanager
 * helps ensure k copies of backups over multiple storage resources,
-* maintains recycle bins for file deletions, readily for recover,
+* maintains recycle bins for file deletions, readily for recovery,
 * helps identifying duplicated and large backup files for removal,
 
 THAT'LL BE GREAT!!!
@@ -40,6 +40,20 @@ Any feedback is highly appreciated.
 Let us know if these would be useful.
 
 Let us know your difficulty of managing data files.
+
+
+### How to install
+
+Install the latest gem:
+```
+$ gem install fmanager
+```
+
+Build and install custom gem:
+```
+$ gem build fmanager.gemspec
+$ gem install fmanager-XX.YY.ZZ.gem
+```
 
 
 ### Getting started
@@ -69,20 +83,6 @@ Run tests:
 ```
 $ cd fmanager
 $ rake test
-```
-
-
-### How to install
-
-Install the latest gem:
-```
-$ gem install fmanager
-```
-
-Build and install custom gem:
-```
-$ gem build fmanager.gemspec
-$ gem install fmanager-XX.YY.ZZ.gem
 ```
 
 
