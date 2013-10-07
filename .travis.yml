@@ -4,3 +4,9 @@ rvm:
   - 2.0.0
   - 1.9.3
 script: rake test
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+notifications:
+  email: 
+    - vidyar@qhode.com
+
